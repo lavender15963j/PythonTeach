@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Index</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    </head>
+    <body>
+        {% include 'blog/nav_accounts.html' %}
+        <div class="container">
+            <h1>這是 Login 頁</h1>
+
+            <form method="POST" action=".">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Username</label>
+                    <input class="form-control" name="username" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Password</label>
+                    <input class="form-control" name="password" type="password" required>
+                </div>
+                <input class="btn btn-primary" type="submit">
+            </form>
+            
+            <p>{{ msg }}</p>
+        </div>
+    </body>
+</html>

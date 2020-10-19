@@ -1,0 +1,36 @@
+<!DOCTYPE>
+
+<html>
+    <head>
+        <title>Index</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <h1>這是 Page1</h1>
+            
+            <ul>
+                {% for comment in comments %}
+                    
+                        <li>
+                            {{ comment.name }}: {{ comment.content }}  ({{ comment.createTime }})
+                        </li>
+                    
+                {% endfor %}
+            </ul>
+            
+            <form action="/page1/" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control" name="name" type="text" required/>
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea class="form-control" name="content" required></textarea>
+                </div>
+                <input type="submit" />
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Index</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        {% include 'blog/nav_accounts.html' %}
+        <div class="container">
+            <h1>{{ article.title}} by {{ article.author }}({{ article.createTime }})</h1>
+            <p>{{ article.content }}</p>
+
+            {% if request.user.is_authenticated and request.user ==  article.author %}
+                <a class="btn btn-primary" href="{% url 'article-update' pk=article.id %}">編輯</a>
+                <a class="btn btn-danger" href="{% url 'article-delete' pk=article.id %}">刪除</a>
+            {% endif %}
+        </div>
+    </body>
+</html>

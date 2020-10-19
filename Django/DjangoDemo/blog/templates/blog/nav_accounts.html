@@ -1,0 +1,49 @@
+{% load i18n %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+           <a class="nav-link" href="{% url 'article-list' %}">文章清單</a>
+       </li>
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'article-add' %}">新增文章</a>
+      </li>
+      {% endif %}
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="#">{{ request.user.username }}</a>
+        </li>
+        {% if request.user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">網站後台</a>
+          </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">登出</a>
+          </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">登入</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">註冊</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+{% if messages %}
+  <div class="container">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+{% endif %}

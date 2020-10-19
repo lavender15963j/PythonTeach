@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Index</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        {% include 'blog/nav_accounts.html' %}
+        <div class="container">
+            <h1>所有文章</h1>
+            <p>{{ msg }}</p>
+            <ul>
+                {% for article in articles %}
+                <li>
+                    <a href="{% url 'article-detail' pk=article.id %}">{{ article.title }} by {{ article.author }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            
+            {% include 'blog/pagination.html' %}
+        </div>
+    </body>
+</html>
